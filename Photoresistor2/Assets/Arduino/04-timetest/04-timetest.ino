@@ -9,7 +9,9 @@ int tinyDelay;
 int smallDelay;
 int bigDelay;
 int flag;
-int deliveryTime;
+long deliveryTime;
+elapsedMillis timer0;
+
 
 
 // We'll also set up some global variables for the light level a calibration value and     
@@ -34,6 +36,9 @@ void setup()
   smallDelay = 150;
   bigDelay = 300;
   flag = 1;
+  deliveryTime = 6000;
+  timeElapsed = millis();
+  
 }
 
 
@@ -130,7 +135,7 @@ void BlinkYellow()
 void BlinkGreen()
 {
   for (int i = 0;i < 4; i++)
-  {Serial.println("here");
+  {
     digitalWrite(green, HIGH);
     delay(smallDelay);
     for (int j = 0; j <4; j++)
@@ -144,8 +149,10 @@ void BlinkGreen()
 
 void LaunchSequence()
 {
-   for (int i = 0;i < 20; i++)
+  timer0 = 0;
+   while(timer0 < deliveryTime)
   {
+    Serial.println(timer0);
     digitalWrite(red, HIGH);
     delay(tinyDelay);
     digitalWrite(red, LOW);
