@@ -51,6 +51,13 @@ public class Photoresistor : MonoBehaviour {
         {
             heading.text = "Press second";
             instructions.text = "Start stage 2";
+            
+            Invoke("InvokeFlag3", 1f);
+        }
+        else if (flag==3)
+        {
+            heading.text = "Preparing engines";
+            instructions.text = "Press Launch";
         }
     }
    
@@ -60,6 +67,11 @@ public class Photoresistor : MonoBehaviour {
     {
         flag = 2;
     }
+    void InvokeFlag3()
+    {
+        flag = 3;
+    }
+
 
     void SwitchLight(bool condition)
     {
@@ -77,6 +89,8 @@ public class Photoresistor : MonoBehaviour {
     {
         sp.Write("y");
         print("yellow");
+        
+       
     }
 
     public static void SendGreen()
