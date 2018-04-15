@@ -15,11 +15,12 @@ public class Photoresistor : MonoBehaviour {
     public Text heading;
     public Text instructions;
     private int flag;
-    public static SerialPort sp = new SerialPort("COM4",9600);
+    public static SerialPort sp = new SerialPort("COM4", 9600);
 
 
 
-	void Start () {
+    void Start()
+    {
         sp.Open();
         sp.ReadTimeout = 1;
         heading.text = "waiting for train";
@@ -42,34 +43,23 @@ public class Photoresistor : MonoBehaviour {
                 heading.text = "Train Detected";
                 instructions.text = "Start stage 2";
                 Invoke("InvokeFlag2", 1f);
-                
+
 
             }
-            
-            else //if (angleMove < 700)
-            {
-                //SwitchLight(false);
-                //heading.text = "";
-                //instructions.text = "";
-            }
         }
-        else if (flag==2)
+        else if(flag==2)
         {
-            heading.text = "flag is 2";
-            instructions.text = "";
+            heading.text = "Press second";
+            instructions.text = "Start stage 2";
         }
-        //else if()
     }
+   
 
+          
     void InvokeFlag2()
     {
         flag = 2;
     }
-
-  
-
-
-    
 
     void SwitchLight(bool condition)
     {
@@ -82,12 +72,25 @@ public class Photoresistor : MonoBehaviour {
         sp.Write("r");
         print("on");
     }
+        
+    public static void SendYellow()
+    {
+        sp.Write("y");
+        print("yellow");
+    }
+
+    public static void SendGreen()
+    {
+        sp.Write("g");
+        print("green");
+    }
 
     private void OnApplicationQuit()
     {
         sp.Close();
     }
 }
+
 
 
 
