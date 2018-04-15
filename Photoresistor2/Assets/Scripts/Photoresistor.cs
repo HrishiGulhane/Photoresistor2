@@ -70,7 +70,7 @@ public class Photoresistor : MonoBehaviour {
     public static void SendRed()
     {
         sp.Write("r");
-        print("on");
+        print("red");
     }
         
     public static void SendYellow()
